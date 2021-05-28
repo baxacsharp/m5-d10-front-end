@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>BackOffice Netflix</title>
+  </head>
+  <body>
+    <!--Main NavBar-->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="#">
+        <img
+          class="size-grow"
+          src="./assets/src/Netflix-Logo.wine.svg"
+          width="130px"
+          height="auto"
+          alt=""
+        />
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./indexNetflix.html">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="./backOfficeNetflix.html"
+              >BackOffice <span class="sr-only">(current)</span></a
+            >
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item px-2">
+            <span class="material-icons">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+            <span class="material-icons"> Search </span>
+          </li>
+        </ul>
+        <div class="navbar-nav btn-group">
+          <button
+            type="button"
+            class="btn btn-ghost dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img src="./assets/src/adult-1.png" class="mr-1" width="32px" />
+            <span class="material-icons">User Name</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right special-background">
+            <button class="dropdown-item" type="button">
+              Login BackOffice
+            </button>
+            <button class="dropdown-item" type="button">Share</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!--Secondary NavBar-->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="#">Platform Check</a>
+
+      <div class="dropdown">
+        <button
+          class="btn btn-outline-light dropdown-toggle"
+          type="button"
+          id="dropdownMenu2"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Genres
+        </button>
+        <div class="dropdown-menu dropdown-menu-left special-background">
+          <button class="dropdown-item" type="button">Genre 1</button>
+          <button class="dropdown-item" type="button">Genre 2</button>
+        </div>
+      </div>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item mr-4">
+          <div class="row justify-content-between">
+            <div class="col px-0 grid-view">
+              <span class="material-icons px-2">
+                <i class="fas fa-bars"></i>
+              </span>
+            </div>
+            <div class="col px-0 grid-view">
+              <span class="material-icons px-2">
+                <i class="fas fa-border-all"></i>
+              </span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <!--NavBars END-->
+    <!--Main Section-->
+    <main class="container-fluid pl-5 pr-3">
+      <div class="row">
+        <div class="col col-md-6 offset-md-3 text-center">
+          <h1>BackOffice</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-6">
+          <h2>Add Movies</h2>
+          <form onsubmit="sendDataServer(event)">
+            <div class="form-group">
+              <label for="categorySelected"
+                >Select Category</label
+              >
+              <select
+                class="form-control"
+                id="categorySelected"
+                onchange="fillTitleList(this.value)"
+              >
+                <option>Please select Category</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="titleSelected"
+                >Select Title</label
+              >
+              <select
+                class="form-control"
+                id="titleSelected"
+                onchange="renderMovieCardPreview(this.value)"
+              >
+                <option>1</option>
+              </select>
+            </div>
+            <input type="text" id="movie-title-test">
+            <div class="form-group">
+              <span id="movieId"><!--ASIN to check--></span>
+            </div>
+            <div class="form-group">
+              <label for="description">Movie description</label>
+              <textarea
+                id="description"
+                rows="4"
+                class="form-control"
+                placeholder="Products that have a meaningful description, have double chance in sales... Please add one for your product"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <button id="addToStore" class="btn btn-primary" type="submit">
+                Add to Store
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col col-md-5 text-center">
+          <h2>Movie Preview</h2>
+          <div id="moviePreview" class="container"></div>
+          <!--Here will inject a preview of the card Book to Add at the STORE-->
+        </div>
+      </div>
+      <!--Books available in Store-->
+      <div class="container mt-5">
+          <h2>Movies available in Netflix</h2>
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Id DataBase Store</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="listAvailables">
+                <!--Here Injects products available from feth(booksavalibleurl)-->
+              </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="./assets/js/genresNetfix.js"></script>
+    <script src="./assets/js/backOfficeNetflix.js"></script>
+  </body>
+</html>
