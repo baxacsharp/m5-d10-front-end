@@ -1,0 +1,212 @@
+.title {
+  color: white;
+}
+
+/*CSS CARDS*/
+.materialIcons {
+  color: #535353;
+}
+.materialIcons:hover {
+  color: #e5e5e5;
+}
+.infosContainer {
+  position: absolute;
+  background: #212121;
+  background: linear-gradient(rgba(33, 33, 33, 0), #212121 48px);
+  color: white;
+  left: 0;
+  right: 0;
+  transform: translateY(-52px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.infosContent {
+  padding: 48px 1rem 1.5rem;
+  overflow: hidden;
+}
+
+.playBtn:not(:hover) {
+  background: black;
+}
+
+.playBtn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transform: translateX(-200px);
+  opacity: 0;
+  transition: transform 0.3s ease 0.4s, opacity 0.3s ease-out 0.55s;
+}
+
+.playBtn:hover {
+  animation: gradientSlide 4s ease infinite;
+  border: 0px solid transparent;
+}
+
+.playBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 2px;
+  margin: auto;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 0 7px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+/**/
+.commentBtn:not(:hover) {
+  background: black;
+  border-color: #e5e5e5;
+}
+
+button.commentBtn:hover {
+  background-color: transparent;
+  animation: gradientSlide 4s ease infinite;
+  border: 0px solid transparent;
+}
+
+/**/
+
+.plus {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transform: translateX(32px) rotate(160deg);
+  opacity: 0;
+  transition: all 0.3s ease 0.55s;
+}
+
+.plus::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  background-color: white;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.plus::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background-color: white;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.infosContent > div h6 {
+  transform: translateX(-40px);
+  transition: transform 0.3s ease-in-out 0.35s;
+}
+
+.infosContent p {
+  font-size: 0.8rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.infosContent p:not(p.prime) {
+  transform: translateY(-4px);
+  opacity: 0;
+  transition: all 0.3s ease 0.2s;
+}
+
+.infosContent p.prime {
+  color: #535353;
+}
+
+.infosContent .movieFooter {
+  font-size: 0.8rem;
+  color: #e5e5e5;
+  opacity: 0;
+  transition: all 0.3s ease 0.3s;
+}
+
+.striveCard {
+  transform: scale(1);
+  transition: 0.3s ease-in-out;
+  z-index: 8;
+}
+
+.striveCard:hover {
+  transform: scale(1.08);
+  z-index: 9;
+}
+
+.striveCard:hover img:first-of-type {
+  border: 2px solid #e5e5e5;
+  border-bottom: none;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.striveCard:hover .infosContainer {
+  transform: translateY(-48px);
+  opacity: 1;
+  pointer-events: initial;
+  border: 2px solid #e5e5e5;
+  border-top: none;
+  border-radius: 3px;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.striveCard:hover p:not(p.prime) {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.striveCard:hover .movieFooter {
+  opacity: 1;
+}
+
+.striveCard:hover .playBtn,
+.striveCard:hover .plus,
+.striveCard:hover h6 {
+  opacity: 1;
+  transform: translateX(0) rotate(0);
+}
+
+.gradient {
+  background: linear-gradient(
+    270deg,
+    rgba(229, 9, 20, 1) 35%,
+    rgba(123, 5, 11, 0.16150210084033612) 51%,
+    rgba(0, 0, 0, 1) 100%
+  );
+
+  background-size: 400% 400%;
+}
+
+@keyframes gradientSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
